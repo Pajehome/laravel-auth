@@ -1,6 +1,8 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +21,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::middleware('auth')
- ->namespace('Admin') //cartella controller
- ->name('admin.') //route('admin.home')
- ->prefix('admin') //loacalhost:8000/admin/
- ->group(function() {
-    Route::get('/', 'HomeController@index')->name('home');
- });
+    ->namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('/posts','PostController');
+    });
+
+Route::get("{any?}", function () {
+    return view("guest.home");
+})->where("any", ".*");

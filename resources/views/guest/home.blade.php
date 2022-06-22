@@ -4,22 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Boolpress</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 
-        <!-- Styles -->
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-right links d-flex justify-content-end p-2">
                     @auth
                         <a href="{{ url('/admin') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class="pr-3">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -28,11 +26,9 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Authenticator
-                </div>
+            <div id="root">
             </div>
         </div>
+        <script src="{{asset('js/front.js')}}" charset="utf-8"></script>
     </body>
 </html>
